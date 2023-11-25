@@ -50,7 +50,13 @@ def process_quotes(quotes):
             "can't": "cannot",
             "couldn't": "could not",
             "shouldn't": "should not",
-            "mightn't": "might not"
+            "mightn't": "might not",
+            "i'm": "i am",
+            "you've": "you have",
+            "there's": "there is",
+            "you'll": "you will",
+            "it's": "it is",
+            "you're": "you are"
             # Add more contractions as needed
         }
 
