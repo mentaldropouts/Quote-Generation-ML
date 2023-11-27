@@ -2,7 +2,7 @@ import csv
 import json
 import re
 
-# Function to read and parse the CSV file
+# * Function to read and parse the CSV file
 def parse_csv(file_path):
     quotes = []
 
@@ -13,6 +13,7 @@ def parse_csv(file_path):
             author = row['author']
             categories = row['category'].split(', ')
 
+            # * dict entry to add to json
             quote_data = {
                 'quote': quote_text,
                 'author': author,
@@ -23,18 +24,18 @@ def parse_csv(file_path):
 
     return quotes
 
-# Function to process quotes
+# * Function to process quotes
 def process_quotes(quotes):
     processed_quotes = []
 
     for quote in quotes:
         processed_quote = {
-            'quote': quote['quote'].lower(),  # Convert to lowercase
+            'quote': quote['quote'].lower(),  # * Convert to lowercase
             'author': quote['author'],
             'categories': quote['categories']
         }
 
-        # Replace contractions
+        # * Replace contractions
         contractions = {
             "wasn't": "was not",
             "isn't": "is not",
@@ -57,16 +58,16 @@ def process_quotes(quotes):
             "you'll": "you will",
             "it's": "it is",
             "you're": "you are"
-            # Add more contractions as needed
+            # * Add more contractions as needed
         }
 
         for contraction, replacement in contractions.items():
             processed_quote['quote'] = re.sub(fr"\b{re.escape(contraction)}\b", replacement, processed_quote['quote'])
 
-        # Remove extra whitespaces
+        # * Remove extra whitespaces
         processed_quote['quote'] = ' '.join(processed_quote['quote'].split())
 
-        # Insert whitespace between word and punctuation (including commas)
+        # * Insert whitespace between word and punctuation (including commas)
         processed_quote['quote'] = re.sub(r'(?<=[^\s0-9])(?=[.,;!?])', ' ', processed_quote['quote'])
         processed_quote['quote'] = re.sub(r'(?<=,)(?=[^\s])', ' ', processed_quote['quote'])
 
