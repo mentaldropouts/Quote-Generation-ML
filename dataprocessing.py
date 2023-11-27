@@ -75,6 +75,11 @@ def process_quotes(quotes):
 
     return processed_quotes
 
+# Function to filter out quotes over 100 words
+def filter_long_quotes(quotes, max_words=100):
+    return [quote for quote in quotes if len(quote['quote'].split()) <= max_words]
+
+
 # Example usage
 file_path = 'data/quotes.csv'
 parsed_quotes = parse_csv(file_path)
@@ -82,14 +87,17 @@ parsed_quotes = parse_csv(file_path)
 # Process quotes
 processed_quotes = process_quotes(parsed_quotes)
 
-# # Display the processed quotes
-# for quote in processed_quotes:
+# Filter out quotes over 100 words
+filtered_quotes = filter_long_quotes(processed_quotes)
+
+# # Display the filtered quotes
+# for quote in filtered_quotes:
 #     print(f"Quote: {quote['quote']}")
 #     print(f"Author: {quote['author']}")
 #     print(f"Categories: {', '.join(quote['categories'])}")
 #     print()
 
-# Save processed quotes as JSON
-processed_json_file_path = 'data\quotes.json'
-with open(processed_json_file_path, 'w', encoding='utf-8') as jsonfile:
-    json.dump(processed_quotes, jsonfile, ensure_ascii=False, indent=4)
+# Save filtered quotes as JSON
+filtered_json_file_path = 'data\quotes.json'
+with open(filtered_json_file_path, 'w', encoding='utf-8') as jsonfile:
+    json.dump(filtered_quotes, jsonfile, ensure_ascii=False, indent=4)
