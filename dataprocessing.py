@@ -1,6 +1,7 @@
 import csv
 import json
 import re
+import random
 
 # * Function to read and parse the CSV file
 def parse_csv(file_path):
@@ -76,9 +77,12 @@ def process_quotes(quotes):
     return processed_quotes
 
 # Function to filter out quotes over 100 words
-def filter_long_quotes(quotes, max_words=100):
+def filter_long_quotes(quotes, max_words):
     return [quote for quote in quotes if len(quote['quote'].split()) <= max_words]
 
+# Function to randomly select a specified number of quotes
+def select_random_quotes(quotes, num_quotes):
+    return random.sample(quotes, min(num_quotes, len(quotes)))
 
 # Example usage
 file_path = 'data/quotes.csv'
@@ -88,7 +92,10 @@ parsed_quotes = parse_csv(file_path)
 processed_quotes = process_quotes(parsed_quotes)
 
 # Filter out quotes over 100 words
-filtered_quotes = filter_long_quotes(processed_quotes)
+filtered_quotes = filter_long_quotes(processed_quotes, 50)
+
+# Randomly select 50,000 quotes
+selected_quotes = select_random_quotes(filtered_quotes, 50000)
 
 # # Display the filtered quotes
 # for quote in filtered_quotes:

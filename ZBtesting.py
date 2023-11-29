@@ -13,10 +13,10 @@ with open('data/quotes.json', 'r', encoding='utf-8') as jsonfile:
 quotes_text = [quote['quote'] for quote in quotes_data]
 
 # Tokenize the data with a limited vocabulary size
-tokenizer = Tokenizer(num_words=500)
+tokenizer = Tokenizer(num_words=5000)
 tokenizer.fit_on_texts(quotes_text)
 
-total_words = min(500, len(tokenizer.word_index) + 1)
+total_words = min(5000, len(tokenizer.word_index) + 1)
 
 # Create input sequences and labels
 input_sequences = []
