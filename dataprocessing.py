@@ -3,6 +3,14 @@ import json
 import re
 import random
 
+from transformers import GPT2Tokenizer
+
+# Replace 'distilgpt2' with the actual model name you're using for quotes
+QUOTES_MODEL_NAME = 'distilgpt2' 
+
+quotes_tokenizer = GPT2Tokenizer.from_pretrained(QUOTES_MODEL_NAME)
+
+
 # * Function to read and parse the CSV file
 def parse_csv(file_path):
     quotes = []
@@ -77,8 +85,10 @@ def process_quotes(quotes):
     return processed_quotes
 
 # Function to filter out quotes over 100 words
-def filter_long_quotes(quotes, max_words):
-    return [quote for quote in quotes if len(quote['quote'].split()) <= max_words]
+def filter_long_quotes(quotes, max_tokens, tokenizer):
+    return [quote for quote in quotes if len(tokenizer.encode(quote['quote'])) <= max_tokens]
+
+
 
 # Function to randomly select a specified number of quotes
 def select_random_quotes(quotes, num_quotes):
@@ -92,7 +102,8 @@ parsed_quotes = parse_csv(file_path)
 processed_quotes = process_quotes(parsed_quotes)
 
 # Filter out quotes over 100 words
-filtered_quotes = filter_long_quotes(processed_quotes, 50)
+max_gpt2_tokens = 128  # Set this to your GPT-2 model's maximum sequence length
+filtered_quotes = filter_long_quotes(processed_quotes, max_gpt2_tokens, quotes_tokenizer)
 
 # Randomly select 50,000 quotes
 selected_quotes = select_random_quotes(filtered_quotes, 50000)
