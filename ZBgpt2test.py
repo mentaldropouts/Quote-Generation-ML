@@ -9,6 +9,7 @@ from transformers import AdamW
 from tqdm import tqdm
 from torch.nn.functional import softmax
 import random
+import math
 
 MODEL_NAME = 'distilgpt2'
 tokenizer = GPT2Tokenizer.from_pretrained(MODEL_NAME)
@@ -61,6 +62,31 @@ class QuoteDataset(Dataset):
 
         return encoded_tokens.squeeze(), torch.tensor(segments), torch.tensor(labels)
 
+def train_epoch(model, dataloader, optimizer, device):
+    model.train()
+    total_loss = 0.0
+
+    for batch in tqdm(dataloader, desc="Training"):
+        inputs, segments, labels = batch
+        inputs, segments, labels = inputs.to(device), segments.to(device), labels.to(device)
+
+        optimizer.zero_grad()
+        outputs = model(input_ids=inputs, attention_mask=(inputs != tokenizer.pad_token_id), labels=labels)
+        loss = outputs.loss
+        total_loss += loss.item()
+
+        loss.backward()
+        optimizer.step()
+
+    return total_loss / len(dataloader)
+
+def fit(model, optimizer, train_loader, val_loader, epochs, device):
+    for epoch in range(epochs):
+        train_loss = train_epoch(model, train_loader, optimizer, device)
+        print(f"Epoch {epoch + 1}/{epochs}, Train Loss: {train_loss}")
+
+    print("Training finished.")
+
 
 
 # Build the dataset and display the dimensions of the 1st batch for verification:
@@ -80,7 +106,7 @@ train_loader = DataLoader(quote_dataset, batch_size=32, sampler=train_sampler)
 val_loader = DataLoader(quote_dataset, batch_size=64, sampler=val_sampler)
 
 # Fine-tune GPT2 for two epochs:
-device = torch.device('cuda')
+device = torch.device('cpu')
 model.to(device)
 optimizer = AdamW(model.parameters())
 fit(model, optimizer, train_loader, val_loader, epochs=2, device=device)
