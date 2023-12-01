@@ -21,6 +21,7 @@ Ensure your `quotes.json` file is uploaded to your Google Drive.
 
 - Open the [Quote Generation Colab Notebook](#) in Google Colab.
 - Follow the instructions in the notebook for mounting your Google Drive.
+- Make sure the file location is the same in the file as your google drive
 
 ### 3. Customize
 
