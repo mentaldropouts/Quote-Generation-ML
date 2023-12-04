@@ -19,17 +19,18 @@ Upload the files model.py and generate.py into the MyDrive location of your Goog
 #### 2.2. Google Colab
 
 - Open the [Quote Generation Colab Notebook](#) in Google Colab.
-- Follow the instructions in the notebook for mounting your Google Drive.
-- Make sure the file location is the same in the file as your google drive
+- Make sure the Google Drive in which you run the Colab Notebook is the same drive in which model.py and generate.py are stored
 - For training, make sure to have your runtime type set to "T4 GPU"
 
 ### 3. Customize
 
-Adjust the number of quotes loaded by modifying the `num_quotes_to_load` variable.
+- Adjust the number of quotes used to train the model by modifying the nrows variable in the pandas.read_csv cell
+- Change k and length to play around with the quality of quotes generated
 
 ### 4. Run
 
 Run the notebook cells sequentially to train the GPT-2 model and generate quotes.
+When asked for user input, enter a couple words or a topic that will be the start off the generated quote.
 
 ## Tips
 
