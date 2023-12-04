@@ -18,7 +18,7 @@ Upload the files model.py and generate.py into the MyDrive location of your Goog
 
 #### 2.2. Google Colab
 
-- Open the [Quote Generation Colab Notebook](#) in Google Colab.
+- Open the CS460.ipynb in Google Colab.
 - Make sure the Google Drive in which you run the Colab Notebook is the same drive in which model.py and generate.py are stored
 - For training, make sure to have your runtime type set to "T4 GPU"
 
