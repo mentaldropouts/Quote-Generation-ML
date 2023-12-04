@@ -38,7 +38,7 @@ When asked for user input, click next to the prompt and enter a couple words or 
 - Larger datasets may improve model performance.
 
 ## Note
-
-This README assumes basic familiarity with Google Colab.
+After running this code, there will be a new folder in your Drive called model. You may delete it afterwards to free space
+This README assumes basic familiarity with Google Colab. 
 
 Happy quoting!
