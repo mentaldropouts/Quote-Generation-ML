@@ -6,6 +6,9 @@ from transformers import GPT2LMHeadModel,GPT2Tokenizer
 MAX_LENGTH = int(10000)  # Hardcoded max length to avoid infinite loop
 
 
+###############################################################################
+# This function controls the legth of the quotes that are produced by the model
+###############################################################################
 def adjust_length_to_model(length, max_sequence_length):
     return (
         max_sequence_length if length < 0 and max_sequence_length > 0 else
@@ -14,7 +17,9 @@ def adjust_length_to_model(length, max_sequence_length):
         length
     )
 
-
+###############################################################################
+# This is the main driver function for generating the quotes from the model
+###############################################################################
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument(
