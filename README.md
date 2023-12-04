@@ -20,7 +20,7 @@ Upload the files model.py and generate.py into the MyDrive location of your Goog
 
 - Open the CS460.ipynb in Google Colab.
 - Make sure the Google Drive in which you run the Colab Notebook is the same drive in which model.py and generate.py are stored
-- For training, make sure to have your runtime type set to "T4 GPU"
+- Before starting, make sure to have your runtime type set to "T4 GPU"
 
 ### 3. Customize
 
@@ -30,7 +30,7 @@ Upload the files model.py and generate.py into the MyDrive location of your Goog
 ### 4. Run
 
 Run the notebook cells sequentially to train the GPT-2 model and generate quotes.
-When asked for user input, enter a couple words or a topic that will be the start off the generated quote.
+When asked for user input, click next to the prompt and enter a couple words or a topic that will be the start off the generated quote. 
 
 ## Tips
 
