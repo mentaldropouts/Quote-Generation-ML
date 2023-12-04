@@ -9,13 +9,12 @@ This program uses the GPT-2 language model to generate quotes based on the provi
 ### 1. Prerequisites
 
 - Google Colab account
-- [quotes.json](#) file with your quotes and categories
 
 ### 2. Setup
 
 #### 2.1. Google Drive
 
-Ensure your `quotes.json` file is uploaded to your Google Drive.
+Upload the files model.py and generate.py into the MyDrive location of your Google Drive(don't place it in a folder)
 
 #### 2.2. Google Colab
 
